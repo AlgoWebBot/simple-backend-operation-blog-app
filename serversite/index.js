@@ -29,52 +29,52 @@ async function run() {
         const database = client.db("BlogsApp");
         const createsBlogs = database.collection("blogs");
 
-        app.get('/posts', async (req, res) => {
-            // res.send('Hello server');
-            const cursor = createsBlogs.find();
-            const blogs = await cursor.toArray();
-            res.send(blogs)
-        })
+        // app.get('/posts', async (req, res) => {
+        //     // res.send('Hello server');
+        //     const cursor = createsBlogs.find();
+        //     const blogs = await cursor.toArray();
+        //     res.send(blogs)
+        // })
 
-        app.get('/posts/:id', async (req, res) => {
-            const id = req.params.id;
-            const post = { _id: new ObjectId(id) };
-            const result = await createsBlogs.findOne(post);
-            res.send(result)
-        })
+        // app.get('/posts/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const post = { _id: new ObjectId(id) };
+        //     const result = await createsBlogs.findOne(post);
+        //     res.send(result)
+        // })
 
-        app.post('/posts', async (req, res) => {
-            const post = req.body;
-            console.log(post)
-            const result = await createsBlogs.insertOne(post);
-            res.send(result);
-        })
+        // app.post('/posts', async (req, res) => {
+        //     const post = req.body;
+        //     console.log(post)
+        //     const result = await createsBlogs.insertOne(post);
+        //     res.send(result);
+        // })
 
-        app.put('/posts/:id', async (req, res) => {
-            const id = req.params.id;
-            // console.log(id);
-            const post = req.body;
-            // console.log(post)
-            const filter = { _id: new ObjectId(id) };
-            const options = { upsert: true };
-            const updatePost = {
-                $set: {
-                    name: post.name,
-                    email: post.email,
-                    blog: post.blog,
-                },
-            };
-            const result = await createsBlogs.updateOne(filter, updatePost, options);
-            res.send(result);
-        })
+        // app.put('/posts/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     // console.log(id);
+        //     const post = req.body;
+        //     // console.log(post)
+        //     const filter = { _id: new ObjectId(id) };
+        //     const options = { upsert: true };
+        //     const updatePost = {
+        //         $set: {
+        //             name: post.name,
+        //             email: post.email,
+        //             blog: post.blog,
+        //         },
+        //     };
+        //     const result = await createsBlogs.updateOne(filter, updatePost, options);
+        //     res.send(result);
+        // })
 
-        app.delete('/posts/:id', async (req, res) => {
-            const id = req.params.id;
-            // console.log(id)
-            const query = { _id: new ObjectId(id) };
-            const result = await createsBlogs.deleteOne(query);
-            res.send(result)
-        })
+        // app.delete('/posts/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     // console.log(id)
+        //     const query = { _id: new ObjectId(id) };
+        //     const result = await createsBlogs.deleteOne(query);
+        //     res.send(result)
+        // })
 
 
         // Send a ping to confirm a successful connection
